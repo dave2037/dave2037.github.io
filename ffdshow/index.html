@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ffdshow解码器下载 - 功能说明、安装配置与常见问题指南</title>
+<meta name="description" content="ffdshow解码器下载与使用指南，介绍ffdshow的功能特点、适用场景、安装配置方法、常见问题及替代方案，帮助你了解这款经典音视频解码工具。">
+<meta name="keywords" content="ffdshow解码器下载,ffdshow,解码器,DirectShow,音视频解码,滤镜,播放器插件">
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+<style>
+:root{
+  --bg:#0f1621;
+  --bg-soft:#16202e;
+  --panel:#1c2839;
+  --line:#2a3a50;
+  --text:#e8eef7;
+  --muted:#9aa9bd;
+  --accent:#3ea6ff;
+  --accent-2:#22d3a6;
+  --warn:#f0b429;
+  --radius:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:"Segoe UI","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.75;
+  font-size:16px;
+}
+a{color:var(--accent);text-decoration:none;}
+a:hover{text-decoration:underline;}
+img{max-width:100%;display:block;}
+.container{width:min(1180px,92%);margin:0 auto;}
+
+/* header */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(15,22,33,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:20px;padding:14px 0;
+}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand-logo{
+  width:42px;height:42px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;color:#08121c;font-size:18px;letter-spacing:-1px;
+}
+.brand-text strong{display:block;font-size:17px;letter-spacing:.5px;}
+.brand-text span{font-size:12px;color:var(--muted);}
+.main-nav{display:flex;gap:6px;flex-wrap:wrap;}
+.main-nav a{
+  color:var(--muted);font-size:14px;padding:8px 14px;border-radius:8px;
+  transition:.2s;
+}
+.main-nav a:hover{color:var(--text);background:var(--panel);text-decoration:none;}
+
+/* hero */
+.hero{
+  padding:64px 0 52px;
+  background:
+    radial-gradient(900px 380px at 12% -10%,rgba(62,166,255,.18),transparent 60%),
+    radial-gradient(700px 320px at 88% 0%,rgba(34,211,166,.14),transparent 60%);
+  border-bottom:1px solid var(--line);
+}
+.hero-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:44px;align-items:start;}
+.hero h1{font-size:34px;line-height:1.35;margin-bottom:18px;letter-spacing:.5px;}
+.hero h1 em{font-style:normal;color:var(--accent);}
+.hero p.lead{color:#c3d0e0;font-size:16.5px;max-width:640px;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;}
+.hero-tags span{
+  font-size:13px;color:#bcd3ea;background:rgba(62,166,255,.1);
+  border:1px solid rgba(62,166,255,.28);padding:5px 12px;border-radius:999px;
+}
+.hero-actions{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap;}
+.btn{
+  display:inline-block;padding:12px 24px;border-radius:10px;font-size:15px;
+  font-weight:600;transition:.2s;border:1px solid transparent;
+}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#2b8fe0);color:#06121d;}
+.btn-primary:hover{filter:brightness(1.1);text-decoration:none;}
+.btn-ghost{border-color:var(--line);color:var(--text);background:var(--panel);}
+.btn-ghost:hover{border-color:var(--accent);text-decoration:none;}
+
+.hero-side{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px 22px 18px;
+}
+.hero-side h2{font-size:15px;color:var(--accent-2);margin-bottom:14px;letter-spacing:.5px;}
+.hero-side ul{list-style:none;}
+.hero-side li{
+  display:flex;gap:10px;font-size:14px;color:#c3d0e0;
+  padding:9px 0;border-bottom:1px dashed rgba(255,255,255,.07);
+}
+.hero-side li:last-child{border-bottom:none;}
+.hero-side li b{color:var(--accent);font-weight:600;min-width:56px;}
+
+/* section */
+section.block{padding:56px 0;border-bottom:1px solid var(--line);}
+.section-head{margin-bottom:30px;}
+.section-head h2{font-size:24px;margin-bottom:10px;letter-spacing:.4px;}
+.section-head p{color:var(--muted);font-size:15px;max-width:760px;}
+
+/* cards */
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.card{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px 22px;transition:.25s;
+}
+.card:hover{border-color:rgba(62,166,255,.55);transform:translateY(-3px);}
+.card .ico{
+  width:38px;height:38px;border-radius:9px;margin-bottom:16px;
+  background:rgba(62,166,255,.14);color:var(--accent);
+  display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;
+}
+.card h3{font-size:17px;margin-bottom:10px;}
+.card p{font-size:14.5px;color:var(--muted);}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:step;}
+.step{
+  background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px 20px;position:relative;
+}
+.step::before{
+  counter-increment:step;content:counter(step);
+  display:flex;align-items:center;justify-content:center;
+  width:30px;height:30px;border-radius:50%;margin-bottom:14px;
+  background:var(--accent);color:#06121d;font-weight:700;font-size:14px;
+}
+.step h3{font-size:16px;margin-bottom:8px;}
+.step p{font-size:14px;color:var(--muted);}
+
+/* table */
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);}
+table{width:100%;border-collapse:collapse;min-width:640px;font-size:14.5px;}
+thead{background:var(--bg-soft);}
+th,td{padding:14px 18px;text-align:left;border-bottom:1px solid var(--line);}
+th{color:#cfe1f5;font-weight:600;font-size:14px;letter-spacing:.4px;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover{background:rgba(62,166,255,.05);}
+td:first-child{color:var(--text);font-weight:600;}
+
+/* faq */
+.faq-item{
+  background:var(--panel);border:1px solid var(--line);border-radius:10px;
+  margin-bottom:12px;overflow:hidden;
+}
+.faq-q{
+  width:100%;text-align:left;background:none;border:none;color:var(--text);
+  font-size:15.5px;font-weight:600;padding:18px 22px;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  font-family:inherit;
+}
+.faq-q::after{content:"+";color:var(--accent);font-size:20px;font-weight:400;transition:.2s;}
+.faq-item.open .faq-q::after{transform:rotate(45deg);}
+.faq-a{
+  max-height:0;overflow:hidden;transition:max-height .3s ease;
+  color:var(--muted);font-size:14.5px;
+}
+.faq-a p{padding:0 22px 20px;}
+.faq-item.open .faq-a{max-height:520px;}
+
+/* notes */
+.note-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.note{
+  background:var(--bg-soft);border-left:3px solid var(--warn);
+  border-radius:0 10px 10px 0;padding:20px 22px;
+}
+.note h3{font-size:16px;margin-bottom:10px;color:#ffe6a8;}
+.note p{font-size:14.5px;color:var(--muted);}
+.note.good{border-left-color:var(--accent-2);}
+.note.good h3{color:#a9f3dd;}
+
+/* sidebar layout */
+.split{display:grid;grid-template-columns:2fr 1fr;gap:34px;align-items:start;}
+.aside-box{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px;margin-bottom:20px;
+}
+.aside-box h3{font-size:16px;margin-bottom:14px;color:var(--accent-2);}
+.aside-box ul{list-style:none;}
+.aside-box li{font-size:14px;color:var(--muted);padding:8px 0;border-bottom:1px dashed rgba(255,255,255,.07);}
+.aside-box li:last-child{border-bottom:none;}
+.aside-box li b{color:var(--text);font-weight:600;}
+
+/* footer */
+.site-footer{background:#0b1119;border-top:1px solid var(--line);padding:44px 0 26px;}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:30px;}
+.footer-grid h4{font-size:15px;margin-bottom:14px;color:#dbe7f5;}
+.footer-grid p,.footer-grid li{font-size:13.5px;color:var(--muted);}
+.footer-grid ul{list-style:none;}
+.footer-grid li{padding:5px 0;}
+.footer-bottom{
+  margin-top:30px;padding-top:20px;border-top:1px solid var(--line);
+  font-size:13px;color:#6f8098;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+}
+
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr;}
+  .card-grid{grid-template-columns:1fr 1fr;}
+  .steps{grid-template-columns:1fr 1fr;}
+  .split{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:640px){
+  .header-inner{flex-direction:column;align-items:flex-start;gap:12px;}
+  .hero{padding:44px 0 38px;}
+  .hero h1{font-size:26px;}
+  .card-grid{grid-template-columns:1fr;}
+  .steps{grid-template-columns:1fr;}
+  .note-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+  section.block{padding:42px 0;}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <div class="brand-logo">FF</div>
+      <div class="brand-text">
+        <strong>ffdshow 解码器资料站</strong>
+        <span>音视频解码 · 滤镜配置 · 使用指南</span>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <a href="#intro">功能概览</a>
+      <a href="#scene">适用场景</a>
+      <a href="#install">安装配置</a>
+      <a href="#compare">方案对比</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="container hero-grid">
+      <div>
+        <h1>ffdshow 解码器下载前，先弄清它<em>能做什么、还值不值得用</em></h1>
+        <p class="lead">
+          ffdshow 是 Windows 平台上一款基于 DirectShow 的音视频解码与后处理工具，早年常用于为播放器补充
+          H.264、DivX、Xvid、MPEG-2 等格式的解码能力，并附带画面缩放、锐化、降噪等滤镜。
+          在系统自带解码器和现代播放器已相当完善的今天，它更适合特定老软件、老格式或需要精细滤镜控制的场景。
+          本页整理功能说明、安装配置思路、兼容性注意事项与常见问题，供你在下载前做出判断。
+        </p>
+        <div class="hero-tags">
+          <span>DirectShow 解码框架</span>
+          <span>音视频后处理滤镜</span>
+          <span>Windows 平台</span>
+          <span>老格式兼容</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#install">查看安装配置思路</a>
+          <a class="btn btn-ghost" href="#faq">跳到常见问题</a>
+        </div>
+      </div>
+      <aside class="hero-side">
+        <h2>快速了解</h2>
+        <ul>
+          <li><b>类型</b><span>DirectShow 解码器与滤镜集合</span></li>
+          <li><b>系统</b><span>主要面向 Windows 桌面环境</span></li>
+          <li><b>强项</b><span>老格式解码、画面后处理调节</span></li>
+          <li><b>注意</b><span>需从可信来源获取安装包</span></li>
+          <li><b>现状</b><span>更新节奏放缓，建议评估替代方案</span></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+
+  <!-- 功能概览 -->
+  <section class="block" id="intro">
+    <div class="container">
+      <div class="section-head">
+        <h2>ffdshow 的核心功能</h2>
+        <p>它并不是一个播放器，而是一组在后台工作的解码与处理组件。理解这一点，有助于判断自己是否真的需要它。</p>
+      </div>
+      <div class="card-grid">
+        <article class="card">
+          <div class="ico">解</div>
+          <h3>多格式视频解码</h3>
+          <p>通过 libavcodec 等开源解码库，为 DirectShow 体系补充对 H.264、MPEG-4、DivX、Xvid、MPEG-2、WMV 等常见视频编码的解码支持，让依赖系统解码器的老播放器也能打开这些文件。</p>
+        </article>
+        <article class="card">
+          <div class="ico">音</div>
+          <h3>音频解码与输出</h3>
+          <p>支持 MP3、AAC、AC3、DTS、Vorbis 等音频格式的解码，并可对输出声道、采样率、音量增益进行调整，部分场景下可绕开系统解码器的限制。</p>
+        </article>
+        <article class="card">
+          <div class="ico">滤</div>
+          <h3>画面后处理滤镜</h3>
+          <p>提供缩放、锐化、去块、降噪、色彩调整等滤镜链，可在解码后对画面进行处理。对于低分辨率老片源，合理的滤镜设置能改善观感，但过度处理也会带来失真。</p>
+        </article>
+        <article class="card">
+          <div class="ico">配</div>
+          <h3>按程序独立配置</h3>
+          <p>可针对不同播放器或应用分别设定启用哪些解码器和滤镜，避免全局强制接管导致某些软件异常，这是它相对灵活的一点。</p>
+        </article>
+        <article class="card">
+          <div class="ico">字</div>
+          <h3>字幕与画面叠加</h3>
+          <p>支持在画面层叠加字幕、显示播放信息等处理，配合特定播放器使用时可以省去额外的字幕渲染步骤。</p>
+        </article>
+        <article class="card">
+          <div class="ico">兼</div>
+          <h3>兼容老播放器</h3>
+          <p>一些停更的播放器、采集软件、视频编辑工具仍依赖系统 DirectShow 解码器，ffdshow 可作为补充让这些程序继续处理新格式素材。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 适用场景 -->
+  <section class="block" id="scene">
+    <div class="container split">
+      <div>
+        <div class="section-head">
+          <h2>哪些情况下适合考虑使用</h2>
+          <p>是否安装，取决于你遇到的具体问题。以下场景通常更有意义。</p>
+        </div>
+        <div class="note-grid">
+          <div class="note good">
+            <h3>值得尝试的情况</h3>
+            <p>使用停更的老播放器或老版本视频工具，打开新格式文件时提示缺少解码器；需要为多个程序统一补充解码能力；希望对画面做细粒度的锐化、缩放等处理；在离线环境中处理本地视频素材。</p>
+          </div>
+          <div class="note">
+            <h3>不必安装的情况</h3>
+            <p>日常只用现代播放器观看常见格式；系统已能正常播放目标文件；对系统稳定性要求高、不希望引入额外解码器接管链路；仅需要偶尔转码一两个文件，用现成工具即可完成。</p>
+          </div>
+        </div>
+        <div class="section-head" style="margin-top:34px;">
+          <h2>使用前需要了解的边界</h2>
+        </div>
+        <p style="color:var(--muted);font-size:15px;">
+          ffdshow 的工作方式是接入 DirectShow 解码链路，这意味着它可能影响所有使用该链路的程序。
+          配置不当会出现画面花屏、音画不同步、程序崩溃等问题。此外，该项目更新节奏已明显放缓，
+          对较新的编码格式（如部分 HEVC、AV1 场景）支持有限，遇到这类文件时，现代播放器内置的解码器通常更合适。
+          因此建议把它当作“针对性补充工具”，而不是必装组件。
+        </p>
+      </div>
+      <aside>
+        <div class="aside-box">
+          <h3>下载前的核对清单</h3>
+          <ul>
+            <li><b>来源：</b>优先选择项目官方或可信镜像渠道</li>
+            <li><b>版本：</b>注意区分 32 位与 64 位</li>
+            <li><b>系统：</b>确认与当前 Windows 版本兼容</li>
+            <li><b>备份：</b>安装前记录原有解码器配置</li>
+            <li><b>杀软：</b>安装包需通过安全软件扫描</li>
+            <li><b>回退：</b>保留卸载方式，便于恢复</li>
+          </ul>
+        </div>
+        <div class="aside-box">
+          <h3>相关概念</h3>
+          <ul>
+            <li><b>DirectShow：</b>Windows 多媒体框架</li>
+            <li><b>解码器：</b>把压缩数据还原为画面声音</li>
+            <li><b>滤镜：</b>对解码后数据做二次处理</li>
+            <li><b>分离器：</b>拆分容器中的音视频轨道</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 安装配置 -->
+  <section class="block" id="install">
+    <div class="container">
+      <div class="section-head">
+        <h2>安装与配置的基本思路</h2>
+        <p>以下为通用流程说明，具体界面与选项会随版本不同而变化，请以实际安装向导为准。</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <h3>确认需求与位数</h3>
+          <p>先明确要解决的是哪个程序、哪种格式的问题，再确认该程序是 32 位还是 64 位，选择对应版本的组件。</p>
+        </div>
+        <div class="step">
+          <h3>获取安装包</h3>
+          <p>从可信渠道下载，下载后先做安全扫描，核对文件信息，避免使用来源不明的二次打包版本。</p>
+        </div>
+        <div class="step">
+          <h3>安装并选择组件</h3>
+          <p>安装过程中按需勾选视频解码、音频解码、滤镜等组件，不需要的部分可以不装，减少接管范围。</p>
+        </div>
+        <div class="step">
+          <h3>按程序启用配置</h3>
+          <p>在配置界面中针对目标程序启用所需解码器，先保持默认，确认可正常播放后再逐步调整滤镜参数。</p>
+        </div>
+      </div>
+      <div class="note-grid" style="margin-top:26px;">
+        <div class="note">
+          <h3>配置时的稳妥做法</h3>
+          <p>一次只改一项设置，改完立即用目标文件测试；滤镜链越短越稳定，锐化和降噪不要同时拉满；遇到异常先恢复默认，再逐项排查。</p>
+        </div>
+        <div class="note good">
+          <h3>出现问题时</h3>
+          <p>若播放异常，可先在配置中禁用对当前程序的接管，确认问题是否由它引起；仍无法解决时卸载并清理相关设置，改用现代播放器验证文件本身是否正常。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 方案对比 -->
+  <section class="block" id="compare">
+    <div class="container">
+      <div class="section-head">
+        <h2>与其他解码方案的简单对比</h2>
+        <p>不同方案各有侧重，以下为方向性说明，不代表绝对优劣，实际体验取决于文件格式与使用环境。</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>方案</th>
+              <th>主要特点</th>
+              <th>适合的情况</th>
+              <th>需注意</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ffdshow</td>
+              <td>DirectShow 解码器与滤镜集合，可精细调节画面处理</td>
+              <td>老播放器缺解码器、需要后处理滤镜</td>
+              <td>更新放缓，新格式支持有限，配置不当影响面较广</td>
+            </tr>
+            <tr>
+              <td>现代播放器内置解码</td>
+              <td>随播放器一体提供，开箱可用，维护活跃</td>
+              <td>日常观看主流格式视频</td>
+              <td>滤镜与参数调节选项相对有限</td>
+            </tr>
+            <tr>
+              <td>系统自带解码组件</td>
+              <td>无需额外安装，随系统更新</td>
+              <td>系统已能正常播放的目标文件</td>
+              <td>格式覆盖范围受系统版本影响</td>
+            </tr>
+            <tr>
+              <td>转码工具</td>
+              <td>把文件转为通用格式后再播放</td>
+              <td>偶尔处理个别不兼容文件</td>
+              <td>需要额外时间与存储空间</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block" id="faq">
+    <div class="container">
+      <div class="section-head">
+        <h2>常见问题</h2>
+        <p>以下回答基于通用使用经验整理，具体表现会因系统环境与版本不同而有所差异。</p>
+      </div>
+
+      <div class="faq-item open">
+        <button class="faq-q" type="button">ffdshow 是播放器吗？</button>
+        <div class="faq-a"><p>不是。它是一个解码器与滤镜组件集合，需要依附于使用 DirectShow 框架的播放器或其他多媒体程序才能发挥作用。单独安装它并不会得到一个可以打开视频的播放界面。</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" type="button">安装后某些视频反而无法播放，怎么办？</button>
+        <div class="faq-a"><p>这通常是因为它接管了本来由其他组件处理的解码链路。可以在配置中取消对相关程序的接管，或调整解码器的优先级；若问题持续，卸载后观察是否恢复正常，以此判断是否为它引起。</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" type="button">32 位和 64 位版本该怎么选？</button>
+        <div class="faq-a"><p>取决于你要配合使用的程序位数，而不是操作系统的位数。64 位系统上运行 32 位播放器时，需要的是 32 位组件。不确定时可以先查看目标程序的信息，或分别测试。</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" type="button">它能处理最新的视频编码格式吗？</button>
+        <div class="faq-a"><p>对新格式的支持取决于其内置解码库的版本，整体上覆盖范围有限。较新的编码格式建议使用维护活跃的现代播放器，它们通常内置了更新的解码能力。</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" type="button">画面滤镜应该怎么设置？</button>
+        <div class="faq-a"><p>建议从默认状态开始，只开启确实需要的滤镜，并小幅调整参数后立即预览效果。锐化、降噪、缩放同时使用时容易互相影响，出现噪点或边缘生硬时，应减少叠加的处理项。</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" type="button">下载时需要注意什么？</button>
+        <div class="faq-a"><p>优先选择项目官方或可信渠道，避免来源不明的二次打包版本；下载后先进行安全扫描，核对文件基本信息；安装前记录原有配置，保留卸载方式，以便出现问题时快速恢复。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 小结 -->
+  <section class="block" style="border-bottom:none;">
+    <div class="container">
+      <div class="section-head">
+        <h2>写在最后</h2>
+        <p>
+          ffdshow 解码器下载与使用，本质上是一个“按需补充”的选择。它在特定历史阶段解决了不少格式兼容问题，
+          也提供了相当细致的画面处理能力；但在解码技术整体进步的今天，多数日常需求已可由现代播放器满足。
+          如果你的问题确实指向老程序、老格式或精细滤镜调节，按本文的核对清单谨慎操作即可；
+          如果只是想让视频正常播放，先试试更新播放器，往往是更省事的路。
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>ffdshow 解码器资料站</h4>
+        <p>整理 ffdshow 相关的基础概念、功能说明、安装配置思路与常见问题，帮助读者在下载前做出合适判断。页面内容为通用技术说明，不构成对任何具体版本的推荐或担保。</p>
+      </div>
+      <div>
+        <h4>内容导航</h4>
+        <ul>
+          <li><a href="#intro">功能概览</a></li>
+          <li><a href="#scene">适用场景</a></li>
+          <li><a href="#install">安装配置</a></li>
+          <li><a href="#compare">方案对比</a></li>
+          <li><a href="#faq">常见问题</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>相关主题</h4>
+        <ul>
+          <li>DirectShow 解码框架</li>
+          <li>音视频格式兼容</li>
+          <li>播放器滤镜设置</li>
+          <li>软件来源安全提示</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>本站为技术资料整理页面，请以软件实际界面与官方说明为准。</span>
+      <span>安装第三方组件前请自行评估系统环境与安全风险。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var item=btn.parentElement;
+    var isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(function(el){
+      el.classList.remove('open');
+    });
+    if(!isOpen){item.classList.add('open');}
+  });
+});
+</script>
+
+</body>
+          </html>
